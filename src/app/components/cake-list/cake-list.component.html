@@ -1,0 +1,33 @@
+<div class="container">
+  <!-- No data message -->
+  <p *ngIf="Cake.length <= 0" class="no-data text-center">There is no data added yet!</p>
+
+  <!-- Cake list -->
+  <table class="table table-bordered" *ngIf="Cake.length > 0">
+    <thead class="table-success">
+      <tr>
+        <th scope="col" hidden="true">Id</th>
+        <th scope="col">Cake</th>
+        <th scope="col">Name</th>
+        <th scope="col">Yum factor</th>
+        <th scope="col center">Update</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of Cake; let i = index">
+        <th scope="row"  hidden="true">{{item._id}}</th>
+        <td style="max-width:200px;"><img style="width: 150px;" [src]="item.imageUrl"></td>
+        <td>{{item.name}}</td>
+        <td>{{item.yumFactor}}</td>
+        <td class="text-center edit-block">
+          <span class="edit" [routerLink]="['/edit/', item._id]">
+            <button type="button" class="btn btn-success btn-sm">Edit</button>
+          </span>
+          <span class="delete" (click)="remove(item, i)">
+            <button type="button" class="btn btn-danger btn-sm">Delete</button>
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
